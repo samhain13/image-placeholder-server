@@ -1,25 +1,23 @@
-Image Placeholder Server
-    
-    By Arielle B Cruz <http://www.abcruz.com> <arielle.cruz@gmail.com>
-    Dedicated to the Public Domain on January 2013.
+#Image Placeholder Server
 
-Description:
+By Arielle B Cruz <http://www.abcruz.com> <arielle.cruz@gmail.com>  
+Dedicated to the Public Domain on January 2013.
 
-    Inspired by http://placehold.it.
-    
-    Generates placeholder images for web pages in development but
-    does not require an active Internet connection.
-    
-    Requires the Python Imaging Library.
+##Description:
 
-Usage:
-    
-    Run the script in a terminal.
-    
-    Point the web browser or img src to
-    http://localhost:5001/(width)x(height) or
-    http://localhost:5001/(width)x(height)/(colour hex code)
-    
-    For example:
-    <img src="http://localhost:5001/800x600" alt="Placeholder." />
-    <img src="http://localhost:5001/800x600/a4b5c6" alt="Placeholder." />
+Inspired by http://placehold.it.  
+
+Generates placeholder images for web pages in development but  
+does not require an active Internet connection.  
+
+Requires the Python Imaging Library.  
+
+##Usage:
+
+1. Run the script in a terminal.  
+2. Point the web browser or image src to:  
+    a. http://localhost:5001/(width)x(height)  
+    b. http://localhost:5001/(width)x(height)/(colour hex code)  
+    c. <img src="http://localhost:5001/800x600" alt="Placeholder." />  
+    d. <img src="http://localhost:5001/800x600/a4b5c6" alt="Placeholder." />
+                    
