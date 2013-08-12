@@ -18,6 +18,6 @@ Requires the Python Imaging Library.
 2. Point the web browser or image src to:  
     a. http://localhost:5001/(width)x(height)  
     b. http://localhost:5001/(width)x(height)/(colour hex code)  
-    c. <img src="http://localhost:5001/800x600" alt="Placeholder." />  
-    d. <img src="http://localhost:5001/800x600/a4b5c6" alt="Placeholder." />
+    c. &lt;img src="http://localhost:5001/800x600" alt="Placeholder." /&gt;  
+    d. &lt;img src="http://localhost:5001/800x600/a4b5c6" alt="Placeholder." /&gt;
                     
