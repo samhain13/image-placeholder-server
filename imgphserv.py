@@ -83,10 +83,9 @@ if __name__ == "__main__":
     
     try:
         server = HTTPServer(("", server_port), MyHandler)
-        print "Simple HTTP server started."
+        print "Simple HTTP server started on port %s." % server_port
         server.serve_forever()
     
     except KeyboardInterrupt:
         print "\nInterrupted. Goodbye."
         server.socket.close()
-
