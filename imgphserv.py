@@ -77,6 +77,7 @@ class MyHandler(BaseHTTPRequestHandler):
         else:
             coord_color_b = "00";
 
+        # coord_color contains now the darker color.
         coord_color = "#" + coord_color_r + coord_color_g + coord_color_b
 
         # The image to be sent out.
@@ -89,10 +90,7 @@ class MyHandler(BaseHTTPRequestHandler):
         new_img = img.resize((txw + 10, txh + 10))
         draw = ImageDraw.Draw(new_img)
 
-
-        #print hex(int(self.img_colour,16) - int(coord_color,16)).replace("0x","#")
         draw.text((5, 5), coord_string, fill="#"+self.img_colour)
-        #hex(int(self.img_colour,16) - int(coord_color,16))
         self.img.paste(new_img, (self.img_size[0]/2-(txw/2)-5,self.img_size[1]/2-txh))
     
     def respond(self):
