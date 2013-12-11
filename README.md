@@ -1,7 +1,10 @@
 #Image Placeholder Server
 
 By Arielle B Cruz <http://www.abcruz.com> <arielle.cruz@gmail.com>  
-Dedicated to the Public Domain on January 2013.
+Dedicated to the Public Domain on January 2013.  
+
+Contributors:
+* DigitalForest <https://github.com/dfmogk>
 
 ##Description:
 
