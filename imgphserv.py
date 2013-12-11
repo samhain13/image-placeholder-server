@@ -26,7 +26,7 @@ import cStringIO
 
 server_port = 5001
 default_size = (320, 100)
-default_colour = "#FFFFFF"
+default_colour = "FFFFFF"
 
 class MyHandler(BaseHTTPRequestHandler):
     
@@ -52,20 +52,46 @@ class MyHandler(BaseHTTPRequestHandler):
         if len(p) == 2:
             c = [x for x in p[1] if x in "0123456789aAbBcCdDeEfF"]
             if len(c) == 6 or len(c) == 3:
-                self.img_colour = "#" + "".join(c)
+                self.img_colour = "".join(c)
     
     def create_image(self):
         """Creates the image that the server is going to send out."""
+        # we want a darker color for the coordinate text. So we subtract coord_color from self.img_colour
+        coord_subtract = int("0x44",16) # for each color (R, G & B), modify 33 to any hex as liked.
+        # slice the #RRGGBB into RR, GG, BB
+        coord_color_r = int(self.img_colour[:2],16)
+        coord_color_g = int(self.img_colour[2:4],16)
+        coord_color_b = int(self.img_colour[4:6],16)
+        
+        # and because subtracting e.g. 0x3 from 0x1 won't be 0x00 but 0xDD, we need these if-lines aswell...
+        if coord_color_r > coord_subtract:
+            coord_color_r = hex(coord_color_r -coord_subtract).replace("0x","")
+        else:
+            coord_color_r = "00";
+        if coord_color_g > coord_subtract:
+            coord_color_g = hex(coord_color_g -coord_subtract).replace("0x","")
+        else:
+            coord_color_g = "00";
+        if coord_color_b > coord_subtract:
+            coord_color_b = hex(coord_color_b -coord_subtract).replace("0x","")
+        else:
+            coord_color_b = "00";
+
+        # coord_color contains now the darker color.
+        coord_color = "#" + coord_color_r + coord_color_g + coord_color_b
+
         # The image to be sent out.
-        self.img = Image.new("RGB", self.img_size, self.img_colour)
+        self.img = Image.new("RGB", self.img_size,"#" + self.img_colour)
         # Add the dimensions of the requested image to the image itself.
-        img = Image.new("RGB", (10, 10), "#000000")
+        img = Image.new("RGB", (10, 10), coord_color)
         draw = ImageDraw.Draw(img)
-        txw, txh = draw.textsize(str(self.img_size))
+        coord_string = str(self.img_size[0]) + " x " + str(self.img_size[1])
+        txw, txh = draw.textsize(coord_string)
         new_img = img.resize((txw + 10, txh + 10))
         draw = ImageDraw.Draw(new_img)
-        draw.text((5, 5), str(self.img_size), fill="#CCCCCC")
-        self.img.paste(new_img, (5, 5))
+
+        draw.text((5, 5), coord_string, fill="#"+self.img_colour)
+        self.img.paste(new_img, (self.img_size[0]/2-(txw/2)-5,self.img_size[1]/2-txh))
     
     def respond(self):
         """Sends the response."""
